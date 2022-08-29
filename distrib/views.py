@@ -106,8 +106,8 @@ class SendToClient(generics.GenericAPIView):
 
     def send_messages(self):
 
-        __my_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTMwNDA5MDUsImlzcyI6ImZhYnJpcXVlIiwibmFtZSI6IlJ1c2xhblNMUCJ9.WNKYtH7IEZ8QGvz9TKdSwHKWjxkmBLWhROyLXcF3zwg"
-        headers = {'Authorization': f'Bearer {__my_token}'}
+        self.__my_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTMwNDA5MDUsImlzcyI6ImZhYnJpcXVlIiwibmFtZSI6IlJ1c2xhblNMUCJ9.WNKYtH7IEZ8QGvz9TKdSwHKWjxkmBLWhROyLXcF3zwg"
+        headers = {'Authorization': f'Bearer {self.__my_token}'}
 
         count = datetime.datetime.now().strftime("%H%M")
         self.count = int(count)+random.randrange(1, 20)
