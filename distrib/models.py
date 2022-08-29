@@ -10,7 +10,7 @@ class Distribution(models.Model):
     date_end = models.DateTimeField()
 
     def __str__(self):
-        return self.id_distribution
+        return str(self.id_distribution)
 
 class Client(models.Model):
     id_client = models.IntegerField(unique=True, blank=False)
@@ -20,7 +20,7 @@ class Client(models.Model):
     timezone = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
-        return self.id_client
+        return str(self.phone_number)
 
 class Messages(models.Model):
     id_message = models.IntegerField(unique=True, blank=False)
@@ -30,7 +30,7 @@ class Messages(models.Model):
     # id_client = models.ForeignKey("Client", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.id_message
+        return str(self.id_message)
 
 class MessagesWait(models.Model):
     id_message = models.IntegerField(unique=False, blank=False)
@@ -40,7 +40,7 @@ class MessagesWait(models.Model):
     # id_client = models.ForeignKey("Client", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.id_message
+        return str(self.id_message)
 
 class Statistic(models.Model):
     id_message = models.IntegerField(unique=False, blank=False)
@@ -59,4 +59,4 @@ class Send(models.Model):
     filter_tag = models.CharField(max_length=30, blank=False, null=False)
 
     def __str__(self):
-        return self.id_distribution
+        return str(self.id_distribution)
