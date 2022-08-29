@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'distrib.apps.DistribConfig',
+    'rest_framework_swagger',  # swagger
+
 ]
 
 MIDDLEWARE = [
@@ -65,9 +67,14 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-        },
+            'libraries': {
+                'staticfiles': 'django.templatetags.static'
+            }
+            }
     },
 ]
+
+
 
 WSGI_APPLICATION = 'distribution.wsgi.application'
 
@@ -84,6 +91,13 @@ DATABASES = {
         'HOST': 'ec2-54-170-90-26.eu-west-1.compute.amazonaws.com',
         'PORT': '5432'
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',  # django rest swagger
 }
 
 

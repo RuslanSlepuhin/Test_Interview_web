@@ -1,20 +1,19 @@
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework_swagger.views import get_swagger_view
+from distrib.views import MessagesViews, ClientViews, DistributionViews, SendToClient, MessagesWaitViews, StatisticViews
 
-from distrib.views import MessagesViews, ClientViews, DistributionViews, SendToClient
+router = routers.DefaultRouter()
+router.register(r'messages', MessagesViews, basename='Messages')
+router.register(r'clients', ClientViews, basename='Clients')
+router.register(r'distributions', DistributionViews, basename='Distribution')
+router.register(r'messages-wait', MessagesWaitViews, basename='Wait')
+router.register(r'statistic', StatisticViews, basename='statistic')
 
-router_messages = routers.SimpleRouter()
-router_messages.register(r'messages', MessagesViews)
-router_clients = routers.SimpleRouter()
-router_clients.register(r'clients', ClientViews)
-router_distribution = routers.SimpleRouter()
-router_distribution.register(r'distributions', DistributionViews)
-
-
+schema_view2 = get_swagger_view(title='EndPoints')
 
 urlpatterns = [
-    path('api/', include(router_messages.urls)),
-    path('api/', include(router_clients.urls)),
-    path('api/', include(router_distribution.urls)),
-    path('api/send/', SendToClient.as_view()),
+    path('api/', include(router.urls)),
+    path('send/', SendToClient.as_view()),
+    path('docs/', schema_view2),
 ]
